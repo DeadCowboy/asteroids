@@ -1,0 +1,92 @@
+/**
+ * @title	Journal Entry #4
+ * @date	November 8th, 2012
+ * @author	Richard Nelson
+ *
+ */
+
+HTML5 AUDIO
+Great articles covering HTML5 audio:
+http://html5doctor.com/html5-audio-the-state-of-play/
+http://www.html5tutorial.info/html5-audio.php
+
+Just like video, audio codec support varies between 
+browsers.  All browsers support WAV files, but FireFox/Opera 
+only support OGG, while Safari/IE only support MP3.  Chrome
+supports all three.  OGG compresses better than MP3, so that
+is the preferred codec.
+
+Audio can be inserted into the DOM with the 'audio' tag, but
+I've concentrated my efforts doing it all through 
+JavaScript.  Here are some of the object details:
+
+-> Constructor / Instantiator
+var audio = new Audio();
+
+-> Properties:
+currentTime - (number) the playhead position in seconds.
+
+buffered - (TimeRanges) the time ranges that have been
+loaded for the audio.
+
+duration - (number) the total time of the audio in seconds,
+read-only.
+
+muted - (boolean) true if the volume is muted.
+
+paused - (boolean) true if the audio is paused.
+
+played - (TimeRanges) the time ranges that have been played.
+
+preload - (string) determines if the audio should preload.
+Set to 'none', 'metadata', and 'auto'.
+
+seekable - (TimeRanges)
+
+seeking - (boolean) true if the audio is seeking.
+
+src - (string) source file of the audio.
+
+volume - (number) volume level from 0 to 1.
+
+-> Methods:
+canPlayType(type:String):String - returns 'probably', 
+'maybe', or null.  Example: audio.canPlayType('audio/ogg');
+
+play():Void - plays the audio.
+
+pause():Void - pauses the audio.
+
+-> Events:
+durationchange - The duration attribute has been updated.
+
+ended - Playback has stopped as the end of the media was 
+reached.
+
+pause - The media playback has been paused. Note there is no 
+stop event.
+
+play - The media has started playing.
+
+timeupdate - The current playback position changed (usually 
+every 250ms).
+
+volumechange - The volume changed.
+
+canplay - The media can be played but may need to pause 
+while the file is downloaded.
+
+canplaythrough - At current download rates, it is estimated 
+that the media can be played from start to finish without pause.
+
+progress - The browser is fetching the media data (usually 
+every 250ms).
+
+
+
+
+
+
+
+
+

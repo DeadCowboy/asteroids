@@ -1,0 +1,69 @@
+/**********************************************************/
+ * ASTEROIDS - HTML5 GAME
+ * Richard Nelson
+ */
+ 
+GAMEPLAY
+Asteroids is based of the simple arcade game from Atari in 1979.  The player
+controls a space ship by press the left/right arrow keys to rotate the ship, and
+press up to control thrust.  Pressing the space bar fires the ships lasers.
+
+The player must avoid asteroids, if the collide with the ship it, then the 
+player will lose a life.  Once all lives have been lost, the player loses the
+game.  Shooting the asteroids with the laser will cause them to break apart from
+larger to smaller asteroids.  Small asteroids vaporize when hit by the laser.
+Successfully hitting asteroids adds to the player's score.
+
+The game is set on a single non-scrolling screen.  Game objects wrap when they 
+go off screen.
+
+A Flash version of the game can be found here:
+http://www.play.vg/games/4-Asteroids.html
+
+
+PRIMARY OBJECTIVES
+The ultimate goal of this project is to learn more about specific HTML5 
+technologies and become more familiar with their advantages and limitaions.
+
+CSS Transformations
+All positioning, rotation, and scaling of game objects will be handled by CSS.
+
+HTML5 Audio
+All audio and sound effects will be handled by HTML5 audio.  There's potential
+to explore a Flash fallback for audio to support legacy browsers.
+
+Local Storage
+The player's top 10 high scores will be stored in their local cache.  Could be
+expanded to allow to show player's replays.
+
+Application Cache
+The game shall be available for offline line play by utilizing the application
+cache manifest.
+
+
+SECONDARY OBJECTIVES
+The following goals are features that may or may not be added once the primary
+goals have been completed.
+
+CSS Animation
+Add a parallax scrolling background to the game use CSS3 animations.
+
+CSS Drawing
+Instead of using bitmaps for game objects, use CSS3 drawing techniques.
+
+Full Screen
+Allow the game to go full screen, using browser's full screen API.
+
+Geolocation
+Get the user's geolocation and have that represented in the game in some way,
+perhaps by overlaying the game on a Google map.
+
+Mobile Support
+Add mobile detection and swap keyboard controls for touch/gesture controls.
+
+Vector Graphics
+Instead of using bitmaps for the game objects, use SVG or similar technologies
+for displaying graphics as vectors.
+
+
+

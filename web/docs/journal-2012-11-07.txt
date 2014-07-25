@@ -1,0 +1,66 @@
+/**
+ * @title	Journal Entry #3
+ * @date	November 7th, 2012
+ * @author	Richard Nelson
+ *
+ */
+ 
+LOCAL STORAGE
+I did some work with HTML5 Local Storage.  It is very basic
+and only allows you to send or get strings.  That means
+all numbers, booleans, arrays, etc are strings.  So, when
+retrieving them you have to make sure to convert them back
+to the data types they originally were.
+
+Some developers have extended the functionality of Local
+Storage by prototyping the 'Storage' object.  I haven't 
+experimented with this myself, but it pretty much just uses
+JSON to stringify objects and such.
+
+Local Storage is limited to 5MB.  While this is set by each
+browser, 5MB seems to be the defacto standard.  This could 
+be an issue cause numbers and such are treated as strings
+and take up much more space than they need too.  The 5MB
+limit is per application/domain per browser.
+
+You can use FireBug's DOM inspector to find the Local 
+Storage for any site and look at the key value pairs.  You
+can also inspect Local Storage with Google's Chrome browser.
+
+Mozilla's article on Local Storage mentions other client
+side storage options: sessionStorage, globalStorage.  The
+latter is only support by FireFox, while the former is 
+supported by all.
+
+
+-> Store a key value pair:
+localStorage.setItem( "myVar", "value" );
+localStorage["myVar"] = "value";
+localStorage.myVar = "value";
+
+-> Get a key value pair:
+localStorage.getItem( "myVar" );
+localStorage["myVar"];
+localStorage.myVar;
+
+-> Remove a key value pair:
+localStorage.removeItem( "myVar" );
+
+-> Clear all:
+localStorage.clear();
+
+
+Any change to the localStorage will trigger the 'storage' 
+event.  While sessionStorage should also trigger this event,
+most browsers don't respond.
+
+window.addEventListener( "storage", function() { 
+	// Do Stuff
+});
+
+Event object properties are as follows:
+key - the key being changed.
+oldValue - the old value of the key being changed.
+newValue - the new value of the key being changed.
+url - the address of the document whose key changed.
+storageArea - the Storage object that was affected.

@@ -1,0 +1,259 @@
+/**
+ * @title Asteroids
+ * @description Asteroids HTML5 game based on 1979 arcade classic.
+ * @version 0.1
+ * @date 2012-07-13
+ * @author Richard Nelson
+*/
+
+/* CHARACTER SET */
+@charset "utf-8";
+
+/* FONTS */
+@import url(http://fonts.googleapis.com/css?family=Iceland);
+
+/* KEYFRAMES */
+@-moz-keyframes player-thrust {
+	0% { 
+		background-position: 0px 0px;
+	}
+	49.999% { 
+		background-position: 0px 0px;
+	}
+	50% { 
+		background-position: -16px 0px;
+	}
+	100% {
+		background-position: -16px 0px;
+	}
+}
+
+@-webkit-keyframes player-thrust {
+	0% { 
+		background-position: 0px 0px;
+	}
+	49.999% { 
+		background-position: 0px 0px;
+	}
+	50% { 
+		background-position: -16px 0px;
+	}
+	100% {
+		background-position: -16px 0px;
+	}
+}
+
+
+/* GENERAL */
+*, body, header, footer, div, span, h1, h2, h3, h4, h5, h6, p, ul, ol, li, table, tr, th, td, img {
+	position: static;
+	top: auto;
+	right: auto;
+	bottom: auto;
+	left: auto;
+	margin: 0px;
+	border: 0px solid #000;
+	padding: 0px;
+	width: auto;
+	height: auto;
+}
+
+body {
+	background: #ccc;
+	font-family: "Iceland", sans-serif;
+}
+
+h1 {
+	font-size: 32px;
+	line-height: 1em;
+}
+
+h2 {
+	font-size: 21px;
+	line-height: 1em;
+}
+
+p {
+	font-size: 14px;
+	line-height: 1.5em;
+}
+
+header {
+	margin: 0px auto;
+	width: 500px;
+}
+
+#main {
+	margin: 0px auto;
+	width: 502px;
+}
+
+#instructions {
+	margin: 10px auto 20px;
+	width: 500px;
+}
+
+footer {
+	margin: 0px auto;
+	width: 500px;
+}
+
+footer p {
+	font-family: "Verdana", sans-serif;
+	font-size: 8px;
+	text-align: right;
+}
+
+audio {
+	display: none;
+}
+
+/* GAME */
+#game {
+	position: relative;
+	border: 1px solid #fff;
+	width: 500px;
+	height: 375px;
+	background-color: #000;
+	overflow: hidden;
+}
+
+#game p {
+	color: #fff;
+	font-size: 21px;
+	line-height: 1em;
+}
+
+#score {
+	position: absolute;
+	top: 0px;
+	left: 100px;
+}
+
+#score p {
+	text-align: right;
+}
+
+#high-score {
+	position: relative;
+	margin: 5px auto 0px;
+	width: 100px;
+}
+
+#high-score p {
+	font-size: 14px;
+	text-align: center;	
+}
+
+#lives {
+	position: absolute;
+	top: 16px;
+	left: 100px;
+}
+
+#lives img {
+	display: inline-block;
+	margin: 0px 2px 0px 0px;
+}
+
+#message {
+	position: absolute;
+	top: 175px;
+	margin: 0px auto;
+	width: 500px;
+}
+
+#message p {
+	margin: 0px 20px 0px 20px;
+	text-align: center;
+}
+
+#player {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 16px;
+	height: 28px;
+	-moz-transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	background: url("../img/player.png") 0px 0px no-repeat;
+}
+
+#player.thrust {
+	-moz-animation-name: player-thrust;
+	-moz-animation-duration: 0.1s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+	
+	-webkit-animation-name: player-thrust;
+	-webkit-animation-duration: 0.1s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+}
+
+.projectile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 3px;
+	height: 3px;
+	-moz-transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	background: url("../img/projectile.png") 0px 0px no-repeat;
+}
+
+.asteroid {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 58px;
+	height: 58px;
+	-moz-transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	background: url("../img/asteroids.png") 0px 0px no-repeat;
+}
+
+.asteroid.type0 {
+	background-position: 0px 0px;
+}
+
+.asteroid.type1 {
+	background-position: -100px 0px;
+}
+.asteroid.type2 {
+	background-position: -200px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

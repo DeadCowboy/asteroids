@@ -1,0 +1,35 @@
+/**
+ * @title	Journal Entry #1
+ * @date	July 19th, 2012
+ * @author	Richard Nelson
+ *
+ */
+ 
+MASKING
+I was able to mask objects within the game, without using the new CSS3 masks,
+by setting the container element to overflow:hidden.
+
+CSS TRANSFORMS
+I want to do as much with CSS as I can for this project.  I've managed to get
+CSS transforms working very well in Mozilla.  At first I tried just setting
+the transform rotation with 'rotate(Ndeg)', but as I want to do other
+transforms such as scaling I found I really need to do matrices.
+
+This wasn't as difficult as I thought after finding some math help through
+WikiPedia.  So, rotation, scaling, and translation (soon) is in the game.
+
+CSS ANIMATIONS
+I found out that you can't doing background-image animations in CSS outside
+of Chrome.  So, I've decide to try and use a sprite sheet and change the
+background-position instead.  This seems to be working good for now.
+
+JAVASCRIPT
+Lots and lots and lots of learning how to do OOP in JavaScript.  I find it 
+difficult since it requires a great amount of code discipline to keep your
+design pattern consistent.
+
+JavaScript does not support classes, only prototype.  In a project like this
+you really need classes and inheritance.  There are many many ways to hack 
+this out in JavaScript so that you can have a constructor, super, etc and
+be able to extend properly.  I've modeled my pattern after the one used in
+THREE.js as it's very obvious and plain to understand how it works.
