@@ -1,8 +1,9 @@
 /**
  * @title Asteroids
  * @description Asteroids HTML5 game based on 1979 arcade classic.
- * @version 0.1
+ * @version 0.0.2
  * @date 2012-07-13
+ * @updated 2015-07-01
  * @author Richard Nelson
 */
 
@@ -37,7 +38,7 @@ ASTEROIDS.EventDispatcher.prototype = {
 	
 	addEventListener: function( type, listener ) {
 		
-		if ( typeof this._listeners[type] == "undefined" ) {
+		if ( typeof this._listeners[type] === "undefined" ) {
 		
 			this._listeners[type] = [];
 			
@@ -158,9 +159,9 @@ ASTEROIDS.DisplayObject = function( element, parent ) {
 	
 		this._element = element;
 		
-		var style = window.getComputedStyle( this._element );
-		this._width = parseFloat( style.width );
-		this._height = parseFloat( style.height );
+		var style = window.getComputedStyle( this._element, null );
+		this._width = parseInt( style.getPropertyValue( "width" ) );
+		this._height = parseInt( style.getPropertyValue( "height" ) );		
 		
 		this.updateTransform();
 		
@@ -194,7 +195,7 @@ ASTEROIDS.DisplayObject.prototype.getTransformProperty = function() {
     var p;
 	
     while ( p = properties.shift() ) {
-        if ( typeof this._element.style[p] != "undefined" ) {
+        if ( typeof this._element.style[p] !== "undefined" ) {
             return p;
         }
     }
@@ -222,11 +223,29 @@ ASTEROIDS.DisplayObject.prototype.setY = function(value) {
 };
 
 ASTEROIDS.DisplayObject.prototype.getWidth = function() {
+	
+	/* NOTE: Chrome is unable to get this value when initialized! */
+	if ( !this._width ) {
+
+		this._width = parseInt( window.getComputedStyle( this._element, null ).getPropertyValue( "width" ) );	
+
+	}
+
 	return this._width;
+	
 };
 
 ASTEROIDS.DisplayObject.prototype.getHeight = function() {
+	
+	/* NOTE: Chrome is unable to get this value when initialized! */
+	if ( !this._height ) {
+
+		this._height = parseInt( window.getComputedStyle( this._element, null ).getPropertyValue( "height" ) );	
+
+	}
+
 	return this._height;
+
 };
 
 ASTEROIDS.DisplayObject.prototype.getBounds = function() {
@@ -251,6 +270,10 @@ ASTEROIDS.DisplayObject.prototype.setScale = function(value) {
 	this.updateTransform();
 };
 
+/*
+ * Keep this function as it may be need latter!
+ */
+/*
 ASTEROIDS.DisplayObject.prototype.getTransform = function() {
 
 	var style = window.getComputedStyle( this._element );
@@ -266,6 +289,7 @@ ASTEROIDS.DisplayObject.prototype.getTransform = function() {
 	var d = values[3];
 	
 };
+*/
 
 // ----- FUNCTIONS ----- //
 ASTEROIDS.DisplayObject.prototype.updateTransform = function() {
@@ -418,7 +442,7 @@ ASTEROIDS.Game.prototype.getSoundIndex = function( filename ) {
 	
 	for ( i = 0; i < length; i++ ) {
 	
-		if ( this._arySounds[i].name.indexOf( filename ) != -1 ) {
+		if ( this._arySounds[i].name.indexOf( filename ) !== -1 ) {
 		
 			return i;
 		
@@ -593,7 +617,7 @@ ASTEROIDS.Game.prototype.checkLevelEnd = function() {
 	
 	for( i = 0; i < length; i++ ) {
 	
-		if ( this._children[i].getElement().className.indexOf("asteroid") != -1 ) {
+		if ( this._children[i].getElement().className.indexOf("asteroid") !== -1 ) {
 			
 			numAsteroids++;
 			
@@ -615,7 +639,7 @@ ASTEROIDS.Game.prototype.addSound = function( filename ) {
 	//log("Game: addSound: " + filename);
 
 	var sfx = new Audio();
-	var ext = ( sfx.canPlayType("audio/ogg") ) 
+	var ext = ( sfx.canPlayType( "audio/ogg" ) ) 
 		? ".ogg"
 		: ".mp3";
 		
@@ -692,9 +716,9 @@ ASTEROIDS.Game.prototype.updateProjectiles = function() {
 	for( i = 0; i < length; i++ ) {
 	
 		// Temp condition check?
-		if ( this._children[i] != undefined ) {
+		if ( this._children[i] !== undefined ) {
 	
-			if ( this._children[i].getElement().className.indexOf("projectile") != -1 ) {
+			if ( this._children[i].getElement().className.indexOf("projectile") !== -1 ) {
 			
 				projectile = this._children[i];
 				projectile.move();
@@ -757,9 +781,9 @@ ASTEROIDS.Game.prototype.updateAsteroids = function() {
 	
 	for( i = 0; i < length; i++ ) {
 	
-		if ( this._children[i] != undefined ) {
+		if ( this._children[i] !== undefined ) {
 	
-			if ( this._children[i].getElement().className.indexOf("asteroid") != -1 ) {
+			if ( this._children[i].getElement().className.indexOf("asteroid") !== -1 ) {
 				
 				asteroid = this._children[i];
 				asteroid.move();
@@ -806,7 +830,7 @@ ASTEROIDS.Game.prototype.hitTestProjectile = function( projectile ) {
 	
 	for ( i = 0; i < length; i++ ) {
 	
-		if ( this._children[i].getElement().className.indexOf("asteroid") != -1 ) {
+		if ( this._children[i].getElement().className.indexOf("asteroid") !== -1 ) {
 			
 			asteroid = this._children[i];
 			
@@ -857,18 +881,22 @@ ASTEROIDS.Game.prototype.onFrame = function(e) {
 ASTEROIDS.Game.prototype.onKeyDown = function(e) {
 	//log("Game: onKeyDown");
 	
-	if ( this._player ) {
+	var codes = "32 37 38 39";
+
+	if ( this._player && codes.indexOf( e.keyCode ) !== -1 ) {
+
+		e.preventDefault();
 	
-		if ( e.keyCode == 38 ) {
+		if ( e.keyCode === 38 ) {
 		
 			this._isUpKeyDown = true;
 			this._player.showThrust();
 		
 		}
 		
-		if ( e.keyCode == 39 )
+		if ( e.keyCode === 39 )
 			this._isRightKeyDown = true;
-		else if ( e.keyCode == 37 )
+		else if ( e.keyCode === 37 )
 			this._isLeftKeyDown = true;
 			
 	}
@@ -879,22 +907,26 @@ ASTEROIDS.Game.prototype.onKeyDown = function(e) {
 ASTEROIDS.Game.prototype.onKeyUp = function(e) {
 	//log("Game: onKeyUp");
 
-	if ( this._player ) {
+	var codes = "32 37 38 39";
+
+	if ( this._player && codes.indexOf( e.keyCode ) !== -1 ) {
+
+		e.preventDefault();
 	
-		if ( e.keyCode == 38 ) {
+		if ( e.keyCode === 38 ) {
 		
 			this._isUpKeyDown = false;
 			this._player.hideThrust();
 			
 		}
 		
-		if ( e.keyCode == 39 )
+		if ( e.keyCode === 39 )
 			this._isRightKeyDown = false;
 			
-		if ( e.keyCode == 37 )
+		if ( e.keyCode === 37 )
 			this._isLeftKeyDown = false;
 			
-		if ( e.keyCode == 32 )
+		if ( e.keyCode === 32 )
 			this.addProjectile();
 			
 	}

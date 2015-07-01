@@ -13,6 +13,21 @@
 @import url(http://fonts.googleapis.com/css?family=Iceland);
 
 /* KEYFRAMES */
+@-webkit-keyframes player-thrust {
+	0% { 
+		background-position: 0px 0px;
+	}
+	49.999% { 
+		background-position: 0px 0px;
+	}
+	50% { 
+		background-position: -16px 0px;
+	}
+	100% {
+		background-position: -16px 0px;
+	}
+}
+
 @-moz-keyframes player-thrust {
 	0% { 
 		background-position: 0px 0px;
@@ -28,7 +43,7 @@
 	}
 }
 
-@-webkit-keyframes player-thrust {
+@keyframes player-thrust {
 	0% { 
 		background-position: 0px 0px;
 	}
@@ -174,22 +189,28 @@ audio {
 	left: 0px;
 	width: 16px;
 	height: 28px;
-	-moz-transform-origin: 50% 50%;
-	-webkit-transform-origin: 50% 50%;
-	transform-origin: 50% 50%;
 	background: url("../img/player.png") 0px 0px no-repeat;
+
+	-webkit-transform-origin: 50% 50%;
+	   -moz-transform-origin: 50% 50%;
+		    transform-origin: 50% 50%;	
 }
 
 #player.thrust {
-	-moz-animation-name: player-thrust;
-	-moz-animation-duration: 0.1s;
-	-moz-animation-timing-function: linear;
-	-moz-animation-iteration-count: infinite;
-	
 	-webkit-animation-name: player-thrust;
 	-webkit-animation-duration: 0.1s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-iteration-count: infinite;
+
+	-moz-animation-name: player-thrust;
+	-moz-animation-duration: 0.1s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+
+	animation-name: player-thrust;
+	animation-duration: 0.1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 
 .projectile {
@@ -198,10 +219,11 @@ audio {
 	left: 0px;
 	width: 3px;
 	height: 3px;
-	-moz-transform-origin: 50% 50%;
-	-webkit-transform-origin: 50% 50%;
-	transform-origin: 50% 50%;
 	background: url("../img/projectile.png") 0px 0px no-repeat;
+
+	-webkit-transform-origin: 50% 50%;
+	   -moz-transform-origin: 50% 50%;
+	        transform-origin: 50% 50%;	
 }
 
 .asteroid {
@@ -210,10 +232,12 @@ audio {
 	left: 0px;
 	width: 58px;
 	height: 58px;
-	-moz-transform-origin: 50% 50%;
-	-webkit-transform-origin: 50% 50%;
-	transform-origin: 50% 50%;
 	background: url("../img/asteroids.png") 0px 0px no-repeat;
+
+	-webkit-transform-origin: 50% 50%;
+	   -moz-transform-origin: 50% 50%;
+	        transform-origin: 50% 50%;
+	
 }
 
 .asteroid.type0 {
